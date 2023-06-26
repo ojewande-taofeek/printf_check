@@ -17,22 +17,26 @@ int _printf(const char *format, ...)
 	va_start(printf_arg, format);
 	while (format[idx])
 	{
-		if (format[idx] == '%')
+		if ((format[idx] == '/' || format[idx] == '%') && format[idx++] == '%')
+		{
+			idx++;
+			len++;
+			_putchar('%');
+		}
+		if (format[idx] == '%' && (format[idx] == 'c' || format[idx] == 's'))
 		{
 			idx++;
 			len++;
 			check = format[idx];
-			if (check == 'c' || check == '%')
+			if (check == 'c')
 			{
 				character = va_arg(printf_arg, int);
 				_putchar(character);
-				break;
 			}
 			else if (check == 's')
 			{
 				str = va_arg(printf_arg, char *);
 				print_str(str);
-				break;
 			}
 		}
 		else
