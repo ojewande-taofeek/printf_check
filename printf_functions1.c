@@ -23,11 +23,14 @@ int _putchar(char s)
 
 int print_str(char *s)
 {
-	int idx = 0, len = 0;
+	int idx = 0;
 
+	if (s == NULL)
+		return (-1);
 	while (s[idx])
 	{
 		_putchar(s[idx]);
 		idx++;
-		len++;
 	}
+	return (0);
+}

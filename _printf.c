@@ -9,40 +9,36 @@
 int _printf(const char *format, ...)
 {
 	va_list printf_arg;
-	int idx = 0, len = 0, num;
-	char character;
-	char *str;
+	int idx = 0, len = 0;
+	char character, check, *str;
 
+	if (format == NULL)
+		return (-1);
 	va_start(printf_arg, format);
-
-	if (format)
+	while (format[idx])
 	{
-		while (format[idx])
+		if (format[idx] == '%')
 		{
-			if (format[idx] == '%')
-			{
-				idx++;
-				len++;
-				switch (format[idx])
-				{
-					case 'c':
-						character = va_arg(printf_arg, int);
-						_putchar(character);
-						break;
-					case 's':
-						str = va_arg(printf_arg, char *);
-						print_str(str);
-						break;
-					case '%':
-						_putchar('%');
-						break;
-				}
-			}
-			else
-				_putchar(format[idx]);
 			idx++;
 			len++;
+			check = format[idx];
+			if (check == 'c' || check == '%')
+			{
+				character = va_arg(printf_arg, int);
+				_putchar(character);
+				break;
+			}
+			else if (check == 's')
+			{
+				str = va_arg(printf_arg, char *);
+				print_str(str);
+				break;
+			}
 		}
+		else
+			_putchar(format[idx]);
+		idx++;
+		len++;
 	}
 	va_end(printf_arg);
 	return (len);
