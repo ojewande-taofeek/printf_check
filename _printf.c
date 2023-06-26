@@ -36,11 +36,6 @@ int _printf(const char *format, ...)
 					case '%':
 						_putchar('%');
 						break;
-					case 'i':
-					case 'd':
-						num = va_arg(printf_arg, int);
-						print_digit(num);
-						break;
 				}
 			}
 			else
