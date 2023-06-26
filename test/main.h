@@ -13,7 +13,13 @@
 
 int _printf(const char *format, ...);
 int _putchar(char s);
-void print_str(char *s);
+int print_str(char *s);
+void print_digit(int n);
+/* SYMBOLIC CONSTANTS */
+
+#define DIV_INIT 1
+#define DIV_CHECK (10)
+#define DIV_MIN (0)
 
 
 #endif /* MAIN_H */
