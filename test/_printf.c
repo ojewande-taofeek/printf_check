@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(printf_arg, format);
-	for (idx = 0; (format[idx] != '\0'); idx++)
+	for (idx = 0; (format) && (format[idx] != '\0'); idx++)
 	{
 		if (format[idx] == '%')
 		{
@@ -24,7 +24,6 @@ int _printf(const char *format, ...)
 			check = format[idx];
 			if (check == 'c' || check == 's' || check == '%')
 				len += f_caller(check)(printf_arg);
-			break;
 		}
 		else
 		{
