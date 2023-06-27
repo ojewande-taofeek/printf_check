@@ -24,7 +24,6 @@ int _printf(const char *format, ...)
 			check = format[idx];
 			if (check == 'c' || check == 's' || check == '%')
 				len += f_caller(check)(printf_arg);
-			break;
 		}
 		else
 		{
