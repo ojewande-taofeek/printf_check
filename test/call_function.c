@@ -13,12 +13,10 @@ int (*f_caller(char check))(va_list)
 		{'c', put_char},
 		{'s', put_str},
 		{'%', put_mod},
-		{'\0', NULL}
 	};
 	int idx = 0;
 
-	for (; call[idx].specifier != '\0'; idx++)
+	for (; call[idx].specifier; idx++)
 		if (check == call[idx].specifier)
 			return (call[idx].fxn);
-	return (NULL);
 }

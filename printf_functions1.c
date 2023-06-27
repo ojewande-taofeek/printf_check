@@ -33,7 +33,7 @@ int put_str(va_list printf_arg)
 
 	str = va_arg(printf_arg, char *);
 	if (str == NULL)
-		str = "(null)";
+		return (0);
 	while (str[idx] != '\0')
 	{
 		write(1, &str[idx], 1);
