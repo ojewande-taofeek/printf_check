@@ -19,4 +19,5 @@ int (*f_caller(char check))(va_list)
 	for (; idx < 3; idx++)
 		if (check == call[idx].specifier)
 			return (call[idx].fxn);
+	return (NULL);
 }
