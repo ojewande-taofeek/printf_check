@@ -30,6 +30,7 @@ int _printf(const char *format, ...);
 int put_char(va_list printf_arg);
 int put_str(va_list printf_arg);
 int put_mod(va_list printf_arg);
+int (*f_caller(char check))(va_list);
 
 /* SYMBOLIC CONSTANTS */
 #define UNUSED(x) (void)(x)

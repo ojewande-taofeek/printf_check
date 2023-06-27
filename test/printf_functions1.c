@@ -1,36 +1,60 @@
 #include "main.h"
 
-int _putchar(char s);
-int print_str(char *s);
+int put_char(va_list printf_arg);
+int put_str(va_list printf_arg);
+int put_mod(va_list printf_arg);
 
 /**
- * _putchar - The function that prints characters
- * @s: The formal parameter of s
+ * put_char - The function that prints characters
+ * @printf_arg: The va_list
  * Return: Each character
  */
 
-int _putchar(char s)
+int put_char(va_list printf_arg)
 {
-	return (write(1, &s, 1));
+	char c;
+
+	c = va_arg(printf_arg, int);
+	write(1, &c, 1);
+	return (1);
 }
 
 
 /**
- * print_str - The function that prints string
- * @s: The pointer to a string constant
+ * put_str - The function that prints string
+ * @printf_arg: The va_list
  * Return: The string length
  */
 
-int print_str(char *s)
+int put_str(va_list printf_arg)
 {
-	int idx = 0;
+	char *str;
+	int idx = 0, len = 0;
 
-	if (s == NULL)
-		return (-1);
-	while (s[idx])
+	str = va_arg(printf_arg, char *);
+	if (str == NULL)
+		str = "(null)";
+	while (str[idx] != '\0')
 	{
-		_putchar(s[idx]);
+		write(1, &str[idx], 1);
+		len++;
 		idx++;
 	}
-	return (0);
+	return (len);
+}
+
+/**
+ * put_mod - The function that prins percentage '%'
+ * @printf_arg: The va_list
+ * Return: 1
+ */
+
+int put_mod(va_list printf_arg)
+{
+	char m;
+
+	UNUSED(printf_arg);
+	m = '%';
+	write(1, &m, 1);
+	return (1);
 }

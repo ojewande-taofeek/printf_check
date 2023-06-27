@@ -14,7 +14,7 @@ int put_char(va_list printf_arg)
 {
 	char c;
 
-	c = va_arg(printf_arg, char);
+	c = va_arg(printf_arg, int);
 	write(1, &c, 1);
 	return (1);
 }
