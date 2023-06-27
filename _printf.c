@@ -3,46 +3,34 @@
 /**
  * _printf - The fucntion that prints various inputs of different formats
  * @format: The string supplied to be printed
- * Return: 0, if successful
+ * Return: len, if successful
  */
 
 int _printf(const char *format, ...)
 {
+	int idx, len = 0;
+	char check;
 	va_list printf_arg;
-	int idx = 0, len = 0;
-	char character, check, *str;
 
 	if (format == NULL)
 		return (-1);
+
 	va_start(printf_arg, format);
-	while (format[idx])
+	for (idx = 0; (format) && (format[idx] != '\0'; idx++))
 	{
-		if ((format[idx] == '/' || format[idx] == '%') && format[idx++] == '%')
+		if (format[idx] == '%')
 		{
 			idx++;
-			len++;
-			_putchar('%');
-		}
-		if (format[idx] == '%' && (format[idx] == 'c' || format[idx] == 's'))
-		{
-			idx++;
-			len++;
 			check = format[idx];
-			if (check == 'c')
-			{
-				character = va_arg(printf_arg, int);
-				_putchar(character);
-			}
-			else if (check == 's')
-			{
-				str = va_arg(printf_arg, char *);
-				print_str(str);
-			}
+			if (check == 'c' || check == 's' || check == '%')
+				len += f_caller(check, printf_arg);
+			break;
 		}
 		else
-			_putchar(format[idx]);
-		idx++;
-		len++;
+		{
+			write(1, &format[idx], 1);
+			len++;
+		}
 	}
 	va_end(printf_arg);
 	return (len);

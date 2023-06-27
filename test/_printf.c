@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(printf_arg, format);
-	while (format[idx])
+	while (format[idx] != '\0')
 	{
 		if ((format[idx] == '/' || format[idx] == '%') && format[idx++] == '%')
 		{
@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 			len++;
 			_putchar('%');
 		}
-		if (format[idx] == '%' && (format[idx] == 'c' || format[idx] == 's'))
+		if (format[idx] == '%' && (format[idx++] == 'c' || format[idx++] == 's'))
 		{
 			idx++;
 			len++;
