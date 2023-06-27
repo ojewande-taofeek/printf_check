@@ -68,21 +68,20 @@ int put_mod(va_list printf_arg)
 
 int put_digits(va_list printf_arg)
 {
-	int div = DIV_INIT, n, len = 0;
+	int div = DIV_INIT, num, len = 0;
 	char p_n;
+	unsigned int n;
 
-	n = va_arg(printf_arg, int);
-	if (n < 0)
+	num = va_arg(printf_arg, int);
+	if (num < 0)
 	{
 		p_n = '-';
 		write(1, &p_n, 1);
 		len++;
-		n = -n;
+		n = -num;
 	}
-	if (n == 0)
-	{	write(1, &n, 1);
-		return (1);
-	}
+	else
+		n = num;
 	while ((n / div) >= DIV_CHECK)
 		div *= DIV_CHECK;
 	while (div > DIV_MIN)
