@@ -16,8 +16,11 @@ int (*f_caller(char check))(va_list)
 	};
 	int idx = 0;
 
-	for (; idx < 3; idx++)
+	while (idx < 3)
+	{
 		if (check == call[idx].specifier)
 			return (call[idx].fxn);
+	idx++;
+	}
 	return (NULL);
 }
